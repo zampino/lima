@@ -1,34 +1,79 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>LisSy -- Lindenmeyer Sexy Systems</title>
-<script src="lib/processing-1.4.1-api.js" type="text/javascript"></script>
-<script src="lib/jquery-1.8.2.min.js" type="text/javascript"></script>
-<script src="lib/underscore-min.js" type="text/javascript"></script>
-<script src="lib/lima.js" type="text/javascript"></script>
-<script src="lib/l_sys.js" type="text/javascript"></script>
-<script src="lib/turtle.js" type="text/javascript"></script>
-<script src="lib/processing_setup.js" type="text/javascript"></script>
-</head>
-<body>
-<canvas id="canvas"></canvas>
-<script>
+  <head>
+    <title>LisSy -- Lindenmeyer Sexy Systems</title>
+    <script src="lib/processing-1.4.1-api.js" type="text/javascript"></script>
+    <script src="lib/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="lib/underscore-min.js" type="text/javascript"></script>
+    <script src="lib/lima.js" type="text/javascript"></script>
+    <script src="lib/l_sys.js" type="text/javascript"></script>
+    <script src="lib/turtle.js" type="text/javascript"></script>
+    <script src="lib/processing_setup.js" type="text/javascript"></script>
 
-top.lima = Lima.load({ axiom: "0",
-                       rules: {
-                         "1": "11",
-                         "0": "1[0]0"
-                       },
-                       actions: {
-                        "0": ["forward"],
-                        "1": ["forward", "right-8"],
-                        "[": ["push", "right-45"],
-                        "]": ["pop", "left-45"]
-                       }
-                })
-               .iterate(9)
-               .run('canvas', {step: 10, width: 800, height: 800});
-</script>
+    <script src="lib/glasshouse.js" type="text/javascript"></script>
+    
+    <!-- jsonform and dependencies -->
+    <script src="public/jsonform/deps/opt/jquery.ui.core.js"></script>
+    <script src="public/jsonform/deps/opt/jquery.ui.widget.js"></script>
+    <script src="public/jsonform/deps/opt/jquery.ui.mouse.js"></script>
+    <script src="public/jsonform/deps/opt/jquery.ui.sortable.js"></script>
+    <script src="public/jsonform/deps/opt/bootstrap-dropdown.js"></script>
+    <script src="public/jsonform/deps/opt/ace/ace.js"></script>
 
-</body>
+    <script src="public/jsonform/lib/jsonform.js"></script>
+
+    <link href="public/jsonform/deps/opt/bootstrap.css"
+    	  rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="console">
+      <form id="form"></form>
+      <div id="swt"></div>
+    </div>
+    <canvas id="canvas">
+    </canvas>
+        <!-- axiom: "0", -->
+        <!-- rules: { -->
+        <!--   "1": "11", -->
+        <!--   "0": "1[0]0" -->
+        <!-- }, -->
+        <!-- actions: { -->
+        <!--   "0": ["forward"], -->
+        <!--   "1": ["forward", "right-10"], -->
+        <!--   "[": ["push", "right-45"], -->
+        <!--   "]": ["pop", "left-45"] -->
+
+
+    <script>
+
+      top.lima = Lima.load({ 
+        axiom: "X",
+        rules: {
+          "X": "F-[[X]+X]+F[+FX]-X",
+          "F": "FF"
+        },
+        actions: {
+          "F": ["forward"],
+          "+": ["right-25"],
+          "-": ["left-25"],
+          "[": ["push"],
+          "]": ["pop"]
+        }
+      })
+      .iterate(3)
+      .run('canvas', {step: 10, origin: function(w, h) { 
+        return {x: w/2, y:0, angle: 90}
+      }});
+
+
+      $("#swt").on("click", function(e) {
+        $("#console").toggleClass('closed');
+      });
+
+      top.gh = new GlassHouse({formId: "form"})
+      
+    </script>
+    
+  </body>
 </html>

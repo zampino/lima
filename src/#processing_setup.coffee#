@@ -12,14 +12,17 @@ class Lima.ProcessingSetup
   run: (canvasId, options)->
     @w = options.width || $(document).width()
     @h = options.height || $(document).height()
+    @origin = options.origin
     @iterations ||= 10
     @procInstance = new Processing(canvasId, @processingSetup())
     @
 
   processingSetup: ->
     @lsys.iterate(@iterations)
-    console.log(@lsys)
+    # console.log(@lsys)
     @cursor = 0
+    defaultStart = {x:0, y:0, angle: 45}
+    start 
     return (p) =>
       @t = new Lima.Turtle p, x: @w/2, y: @h/2, angle: 90
       p.setup = => @setup.call(@, p)
@@ -41,4 +44,4 @@ class Lima.ProcessingSetup
   setup: (p) ->
     p.size(@w, @h)
     p.frameRate(@frames)
-    p.background(0, 0, 1, .5)
+    p.background(@bColor)

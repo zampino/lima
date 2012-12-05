@@ -1,0 +1,12 @@
+{ "axiom": "0",
+  "rules": {
+      "1": "11",
+      "0": "1[0]0",
+  },
+  "actions": {
+       "0": ["forward"],
+       "1": ["forward", "right-10"],
+       "[": ["push", "right-45"],
+       "]": ["pop", "left-45"]
+  }
+}

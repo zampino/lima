@@ -1,0 +1,12 @@
+{
+  "axiom": "FX",
+  "rules": {
+    "X": "X+YF",
+    "Y": "FX-Y"
+  },
+  "actions": {
+    "F": ["forward"],
+    "+": ["right-90"],
+    "-": ["left-90"]
+  }
+}
