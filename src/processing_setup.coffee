@@ -7,7 +7,7 @@ class Lima.ProcessingSetup
 
   iterate: (times) ->
     @iterations = times
-    return @
+    @
 
   run: (canvasId, options)->
     @w = options.width || $(document).width()
@@ -33,7 +33,7 @@ class Lima.ProcessingSetup
     # console.log(t, @cursor, typeof(p.radians))
     # @t.forward()
     # @t.right(10)
-    console.log(@t)
+    # console.log(@t)
     @lsys.draw(@cursor, @t)
     @cursor++
 

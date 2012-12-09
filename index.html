@@ -33,19 +33,8 @@
     </div>
     <canvas id="canvas">
     </canvas>
-        <!-- axiom: "0", -->
-        <!-- rules: { -->
-        <!--   "1": "11", -->
-        <!--   "0": "1[0]0" -->
-        <!-- }, -->
-        <!-- actions: { -->
-        <!--   "0": ["forward"], -->
-        <!--   "1": ["forward", "right-10"], -->
-        <!--   "[": ["push", "right-45"], -->
-        <!--   "]": ["pop", "left-45"] -->
 
-
-    <script>
+<!--    <script>
 
       top.lima = Lima.load({ 
         axiom: "X",
@@ -66,14 +55,25 @@
         return {x: w/2, y:0, angle: 90}
       }});
 
+      </script> -->
+
+    <script>
 
       $("#swt").on("click", function(e) {
         $("#console").toggleClass('closed');
       });
 
-      top.gh = new GlassHouse({formId: "form"})
-      
+      top.gh = GlassHouse.load({formId: "form"});
+      $(function(){
+        var itv = window.setInterval(function() {
+          console.log("repeat");
+          if (window.ace) {
+            window.clearInterval(itv);
+            console.log($("select[name=axioms]").val());
+            $("select[name=axioms]").change();
+          }
+        }, 1000);
+      });
     </script>
-    
   </body>
 </html>

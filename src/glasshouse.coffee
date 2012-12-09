@@ -2,15 +2,18 @@
 # In a Glasshouse, I did grow. 
 #
 
-class @GlassHouse
-  constructor: (options)->
+@GlassHouse =
+  load: (options)->
 
     # render jsonform
-    $("#" + options.formId).jsonForm
+    @formEl = $("#" + options.formId)
+    @formEl.jsonForm
       form: @form
-      schema: @schema  
+      schema: @schema
+    @
 
-  @loadAxioms: (name) =>
+    # GlassHouse.loadAxioms $("select[name=axioms]").val() 
+  loadAxioms: (name) =>
     $.ajax
       url: "glasshouse/plants/" + name + ".json"
       dataType: "text"
@@ -19,16 +22,22 @@ class @GlassHouse
       editor = ace.edit(aceId)
       editor.getSession().setValue(GlassHouse.render(code))
 
-  @render: (code) ->
-    "Lima.load(" + code + ")\n" +
+  render: (code) ->
+    console.log code[code.length-1]
+    "Lima.load(" + code + ")" +
       ".iterate(3)\n" +
-      ".run('canvas',\n  {step: 10,\n" +
-      "                origin: function(w,h) {\n" +
-      "                  return {x: w/2, y:h/2, angle: 90};\n" +
-      "               }});"
-
-
+      ".run('canvas',\n" +
+      "     {step: 10,\n" +
+      "      origin: function(w,h) {\n" +
+      "        return {x: w/2,\n" +
+      "                y: h/2,\n" +
+      "                angle: 90};\n" +
+      "        }\n" +
+      "      });"
+  
   run: ->
+    code = @formEl.jsonFormValue().console
+    eval code
 
   form: [{
     key: "axioms"
@@ -39,15 +48,15 @@ class @GlassHouse
     htmlClass: "trywith"
     onChange: (e) =>
       selected = $(e.target).val()
-      @loadAxioms(selected)
+      GlassHouse.loadAxioms selected
     }, {
     key: "console"
     type: "ace"
     width: "100%"
     height: window.innerHeight + 'px'
     notitle: true
-    onChange: ->
-      @run()
+    onChange: (e) ->
+      GlassHouse.run()
   }]
  
   schema:
