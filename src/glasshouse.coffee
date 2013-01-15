@@ -4,7 +4,8 @@
 
 @GlassHouse =
   load: (options)->
-
+    #processing
+    @procInstance = options.processingInstance
     # render jsonform
     @formEl = $("#" + options.formId)
     @formEl.jsonForm
@@ -37,7 +38,7 @@
   
   run: ->
     code = @formEl.jsonFormValue().console
-    eval code
+    eval "this.lima =" + code
 
   form: [{
     key: "axioms"
@@ -53,6 +54,7 @@
     key: "console"
     type: "ace"
     width: "100%"
+    theme: "foo"
     height: window.innerHeight + 'px'
     notitle: true
     onChange: (e) ->

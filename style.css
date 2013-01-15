@@ -1,7 +1,6 @@
 html, body {
     margin: 0;
     padding: 0;
-
 }
 
 body {
@@ -20,23 +19,35 @@ body {
 
     height: 100%;
     border: 1px solid black;
+
+    /* correct ace gutter */
+    
+    margin-left: -17px;
 }
 
 #console.closed {
   -webkit-transition-property: width;
   -webkit-transition-duration: .5s;
   -webkit-transition-delay: .2s;
-  width: 0;
+  width: 16px;
 }
 
 #swt {
     background: url('images/glyphicons_280_settings.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     top: .5em;
     left: .5em;
     width: 2em;
     height: 2em;
     position: fixed;
+}
+#swt.closed {
+    opacity: .7;
+}
+select[name=axioms] {
+    margin-left: 3em;
+    margin-right: 1em;
 }
 
 canvas {
@@ -47,3 +58,4 @@ canvas {
     overflow: hidden;
 
 }
+

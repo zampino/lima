@@ -29,34 +29,11 @@
   <body>
     <div id="console">
       <form id="form"></form>
+      <i class="icon-search"></i>
       <div id="swt"></div>
     </div>
     <canvas id="canvas">
     </canvas>
-
-<!--    <script>
-
-      top.lima = Lima.load({ 
-        axiom: "X",
-        rules: {
-          "X": "F-[[X]+X]+F[+FX]-X",
-          "F": "FF"
-        },
-        actions: {
-          "F": ["forward"],
-          "+": ["right-25"],
-          "-": ["left-25"],
-          "[": ["push"],
-          "]": ["pop"]
-        }
-      })
-      .iterate(3)
-      .run('canvas', {step: 10, origin: function(w, h) { 
-        return {x: w/2, y:0, angle: 90}
-      }});
-
-      </script> -->
-
     <script>
 
       $("#swt").on("click", function(e) {
