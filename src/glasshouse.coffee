@@ -24,9 +24,8 @@
       editor.getSession().setValue(GlassHouse.render(code))
 
   render: (code) ->
-    console.log code[code.length-1]
     "Lima.load(" + code + ")" +
-      ".iterate(3)\n" +
+      ".iterate(7)\n" +
       ".run('canvas',\n" +
       "     {step: 10,\n" +
       "      origin: function(w,h) {\n" +
@@ -37,8 +36,10 @@
       "      });"
   
   run: ->
+    if top.instance = this.limaInstance
+      console.log("GOT it", instance)
     code = @formEl.jsonFormValue().console
-    eval "this.lima =" + code
+    eval "this.limaInstance =" + code
 
   form: [{
     key: "axioms"

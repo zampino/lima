@@ -36,8 +36,8 @@ body {
     background: url('images/glyphicons_280_settings.png') no-repeat;
     background-size: 75%;
     cursor: pointer;
-    top: .5em;
-    left: .5em;
+    top: 2em;
+    left: 1em;
     width: 2em;
     height: 2em;
     position: fixed;
@@ -46,8 +46,8 @@ body {
     opacity: .7;
 }
 select[name=axioms] {
-    margin-left: 3em;
-    margin-right: 1em;
+    margin-top: 1.5em;
+    margin-left: 4.5em;
 }
 
 canvas {

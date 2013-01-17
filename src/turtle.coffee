@@ -11,11 +11,9 @@ class Lima.Turtle
 
   forward: ->
     trace = @position.trace()
-    console.log("ffw", trace)
     @p.line.apply(@, trace)
 
   left: (angle)->
-    console.log("left")
     @position.rotate(angle)
 
   right: (angle)->
@@ -24,11 +22,9 @@ class Lima.Turtle
   push: ->
     markPos = new Lima.Position(@position)
     @queue.push(markPos)
-    console.log("push", @queue)
 
   pop: ->
     oldPos = @queue.pop()
-    console.log("pop", @position, oldPos)
     @position = oldPos
 
 
