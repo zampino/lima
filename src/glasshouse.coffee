@@ -36,8 +36,9 @@
       "      });"
   
   run: ->
-    if top.instance = this.limaInstance
-      console.log("GOT it", instance)
+    if instance = this.limaInstance
+      console.log "clearing instance"
+      instance.clear()
     code = @formEl.jsonFormValue().console
     eval "this.limaInstance =" + code
 

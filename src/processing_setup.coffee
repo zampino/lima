@@ -6,14 +6,23 @@ class Lima.ProcessingSetup
     @bColor = 200
 
   iterate: (times) ->
-    @iterations = times
+    @iterations = times || -1
     @
 
   run: (canvasId, options)->
     @w = options.width || $(document).width()
     @h = options.height || $(document).height()
     @iterations ||= 10
+    @canvas = $(canvasId)[0]
+    return if @iterations == -1
     @procInstance = new Processing(canvasId, @processingSetup())
+    @
+
+  clear: ->
+    @procInstance.exit()
+    ctx = @canvas.getContext("2d")
+    ctx.clearRect(0, 0, @canvas.width, @canvas.height)
+    console.log "clear rect"
     @
 
   processingSetup: ->
